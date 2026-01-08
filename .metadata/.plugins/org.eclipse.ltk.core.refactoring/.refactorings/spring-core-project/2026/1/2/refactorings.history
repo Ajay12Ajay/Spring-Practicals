@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;spring-core-project/src/main/resources/order.xml&apos; to &apos;order2.xml&apos;" description="Rename resource &apos;order.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/order.xml" name="order2.xml" stamp="1767866009553" updateReferences="true"/>
+</session>
