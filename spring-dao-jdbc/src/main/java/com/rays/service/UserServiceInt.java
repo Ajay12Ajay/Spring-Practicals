@@ -1,16 +1,16 @@
-package com.rays.dao;
+package com.rays.service;
 
 import java.util.List;
 
 import com.rays.dto.UserDTO;
 
-public interface UserDAOInt {
+public interface UserServiceInt {
 
 	public long add(UserDTO dto);
 
 	public void update(UserDTO dto);
 
-	public void delete(long id);
+	public void delete(int id);
 
 	public List list();
 
@@ -19,5 +19,4 @@ public interface UserDAOInt {
 	public UserDTO authenticate(String login, String password);
 
 	public UserDTO findByLogin(String login);
-
 }
