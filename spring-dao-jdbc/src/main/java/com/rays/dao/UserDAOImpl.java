@@ -24,6 +24,20 @@ public class UserDAOImpl implements UserDAOInt {
 	}
 
 	@Override
+	public long nextPK() {
+		String sql = "select max(id) from st_user ";
+
+		Long pk = jdbcTemplate.queryForObject(sql, Long.class);
+
+		if (pk == null) {
+			return 1;
+		} else {
+			return pk + 1;
+		}
+
+	}
+
+	@Override
 	public long add(UserDTO dto) {
 		String sql = "insert into st_user value(?,?,?,?,?)";
 
