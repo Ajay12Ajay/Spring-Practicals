@@ -57,4 +57,11 @@ public class UserServiceImpl implements UserServiceInt {
 
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public UserDTO authenticate(String login, String password) {
+
+		return dao.authenticate(login, password);
+	}
+
 }

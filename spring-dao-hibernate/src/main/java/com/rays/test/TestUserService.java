@@ -30,9 +30,26 @@ public class TestUserService {
 
 		// test.testDelete();
 
+		test.testAuthenticate();
+
 		// test.testFindByLogin();
 
-		test.testSearch();
+		// test.testSearch();
+	}
+
+	private void testAuthenticate() {
+		UserDTO dto = new UserDTO();
+		dto = service.authenticate("ajaystl3@gmail.com", "123");
+		if (dto != null) {
+			System.out.println(dto.getId());
+			System.out.println(dto.getFirstName());
+			System.out.println(dto.getLastName());
+			System.out.println(dto.getLogin());
+			System.out.println(dto.getPassword());
+		} else {
+			System.out.println("user Not found");
+		}
+
 	}
 
 	private void testSearch() {

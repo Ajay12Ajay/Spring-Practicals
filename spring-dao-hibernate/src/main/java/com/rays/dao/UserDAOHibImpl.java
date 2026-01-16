@@ -65,8 +65,22 @@ public class UserDAOHibImpl implements UserDAOInt {
 
 	@Override
 	public UserDTO authenticate(String login, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		List list = null;
+		UserDTO dto = null;
+
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(UserDTO.class);
+		criteria.add(Restrictions.eq("login", login));
+		criteria.add(Restrictions.eq("password", password));
+		list = criteria.list();
+
+		if (list.size() > 0) {
+			dto = (UserDTO) list.get(0);
+		} else {
+			dto = null;
+		}
+
+		return dto;
 	}
 
 	@Override
