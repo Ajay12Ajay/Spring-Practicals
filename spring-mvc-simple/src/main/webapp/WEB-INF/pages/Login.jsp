@@ -12,7 +12,8 @@
 	<sf:form method="post" modelAttribute="form">
 		<div align="center">
 			<h1 style="color: navy">Login</h1>
-			<span style="color: green">${success}</span>
+			<span style="color: green">${success}</span> 
+			<span style="color: red">${error}</span>
 			<table>
 
 				<tr>
@@ -26,7 +27,7 @@
 				<tr>
 				<tr>
 					<th></th>
-					<td><input type="submit" name="operation" value="signUp" /></td>
+					<td><input type="submit" name="operation" value="signIn" /></td>
 				</tr>
 			</table>
 		</div>

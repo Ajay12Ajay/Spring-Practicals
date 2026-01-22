@@ -12,6 +12,7 @@
 <title>Welcome</title>
 </head>
 <body>
+	<%@ include file="Header.jsp"%>
 	<br>
 	<br>
 	<br>
