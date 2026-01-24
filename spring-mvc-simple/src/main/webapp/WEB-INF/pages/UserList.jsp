@@ -14,6 +14,7 @@
 		<h1 style="color: navy">UserList</h1>
 		<span style="color: green">${success}</span>
 		<sf:form method="post" modelAttribute="form">
+			<sf:hidden path="pageNo" />
 
 			<table>
 				<tr>
@@ -26,6 +27,7 @@
 
 			<table style="width: 100%" border="1px">
 				<tr>
+					<th>Select</th>
 					<th>ID</th>
 					<th>FirstName</th>
 					<th>LastName</th>
@@ -33,10 +35,12 @@
 					<th>PassWord</th>
 					<th>DOB</th>
 					<th>Address</th>
+					<th>Edit</th>
 				</tr>
 
 				<c:forEach items="${list}" var="user">
 					<tr>
+						<td><sf:checkbox path="ids" value="${user.id} " /></td>
 						<td><c:out value="${user.id}"></c:out></td>
 						<td><c:out value="${user.firstName}"></c:out></td>
 						<td><c:out value="${user.lastName}"></c:out></td>
@@ -44,20 +48,26 @@
 						<td><c:out value="${user.password}"></c:out></td>
 						<td><fmt:formatDate value="${user.dob}" pattern="dd/MM/yyyy" /></td>
 						<td><c:out value="${user.address}"></c:out></td>
+						<td><a href='<c:url value="/User?id=${user.id}"></c:url>'>Edit..</a></td>
 					</tr>
 				</c:forEach>
 			</table>
 
 			<table style="width: 100%">
 				<tr>
-					<td style="width: 25%" al><input type="submit"
-						name="operation" value="previous"></td>
+					<td style="width: 25%" align="left"><input type="submit"
+						name="operation" value="previous"
+						${form.pageNo > 1 ? "" : 'disabled="disabled"'}></td>
+
 					<td style="width: 25%" align="center"><input type="submit"
 						name="operation" value="add"></td>
+
 					<td style="width: 25%" align="center"><input type="submit"
 						name="operation" value="delete"></td>
+
 					<td style="width: 25%" align="right"><input type="submit"
-						name="operation" value="next"></td>
+						name="operation" value="next"
+						${list.size() < 5 ? 'disabled="disabled"' : ''}></td>
 				</tr>
 			</table>
 

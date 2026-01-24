@@ -3,10 +3,12 @@ package com.rays.ctl;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,18 +25,34 @@ import com.rays.util.DataUtility;
 public class UserCtl {
 
 	@Autowired
-	public UserServiceInt service = null;
+	public UserServiceInt service;
 
 	@GetMapping
-	public String display(@ModelAttribute("form") UserForm form) {
+	public String display(@ModelAttribute("form") UserForm form, @RequestParam(required = false) Long id) {
+		if (id != null && id > 0) {
+			UserDTO dto = service.findByPk(id);
+			form.setId(dto.getId());
+			form.setFirstName(dto.getFirstName());
+			form.setLastName(dto.getLastName());
+			form.setLogin(dto.getLogin());
+			form.setPassword(dto.getPassword());
+			form.setDob(DataUtility.dateToString(dto.getDob()));
+			form.setAddress(dto.getAddress());
+		}
 
 		return "User";
 	}
 
 	@PostMapping
-	public String submit(@ModelAttribute("form") UserForm form, HttpSession session, Model model) {
+	public String submit(@ModelAttribute("form") @Valid UserForm form, BindingResult bindingResult, HttpSession session,
+			Model model) {
+
+		if (bindingResult.hasErrors()) {
+			return "User";
+		}
 
 		UserDTO dto = new UserDTO();
+		dto.setId(form.getId());
 		dto.setFirstName(form.getFirstName());
 		dto.setLastName(form.getLastName());
 		dto.setLogin(form.getLogin());
@@ -63,6 +81,8 @@ public class UserCtl {
 
 		model.addAttribute("list", list);
 
+		form.setPageNo(pageNo);
+
 		return "UserList";
 
 	}
@@ -71,14 +91,46 @@ public class UserCtl {
 	public String submitUserList(@ModelAttribute("form") UserForm form,
 			@RequestParam(required = false) String operation, Model model) {
 
-		UserDTO dto = new UserDTO();
+		int pageNo = 1;
+		int pageSize = 5;
+
+		UserDTO dto = null;
 
 		if (operation.equals("search")) {
+			dto = new UserDTO();
+			dto.setId(form.getId());
 			dto.setFirstName(form.getFirstName());
 		}
 
-		int pageNo = 1;
-		int pageSize = 5;
+		if (operation.equals("add")) {
+			return "redirect:/User";
+		}
+
+		if (operation.equals("previous")) {
+			pageNo = form.getPageNo();
+			pageNo--;
+
+		}
+
+		if (operation.equals("next")) {
+
+			pageNo = form.getPageNo();
+
+			pageNo++;
+		}
+
+		if (operation.equals("delete")) {
+
+			if (form.getIds() != null && form.getIds().length > 0) {
+				for (long id : form.getIds()) {
+					service.delete(id);
+				}
+			}
+
+		}
+
+		form.setPageNo(pageNo);
+
 		List list = service.search(dto, pageNo, pageSize);
 
 		model.addAttribute("list", list);
