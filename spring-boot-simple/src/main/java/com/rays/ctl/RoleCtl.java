@@ -1,14 +1,16 @@
 package com.rays.ctl;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rays.common.BaseCtl;
@@ -36,14 +38,15 @@ public class RoleCtl extends BaseCtl {
 		}
 
 		RoleDTO dto = new RoleDTO();
-		dto.setName(form.getName());
-		dto.setDiscriptions(form.getDiscriptions());
+
+		dto = (RoleDTO) form.getDto();
 
 		long i = service.add(dto);
 
 		if (i != 0) {
 			res.setSuccess(true);
 			res.addMessage("role added Successfully");
+			res.addData(dto);
 		}
 
 		return res;
@@ -52,6 +55,7 @@ public class RoleCtl extends BaseCtl {
 
 	@PostMapping("update")
 	public ORSResponse update(@RequestBody @Valid RoleForm form, BindingResult bindingResult) {
+
 		ORSResponse res = new ORSResponse();
 
 		res = validate(bindingResult);
@@ -74,26 +78,32 @@ public class RoleCtl extends BaseCtl {
 		return res;
 	}
 
-	@PostMapping("delete/{id}")
-	public ORSResponse delete(@PathVariable Long id) {
+	@PostMapping("delete/{ids}")
+	public ORSResponse delete(@PathVariable(required = false) long[] ids) {
 
 		ORSResponse res = new ORSResponse();
 
-		service.delete(id);
+		if (ids != null && ids.length > 0) {
+			for (long id : ids) {
+				service.delete(id);
+			}
+			res.setSuccess(true);
+			res.addMessage("record deleted successfully");
 
-		res.addMessage("data deleted successfully..!");
-		res.setSuccess(true);
-
+		} else {
+			res.addMessage("select at least one record");
+		}
 		return res;
 
 	}
 
-	@PostMapping("get/{id}")
+	@GetMapping("get/{id}")
 	public ORSResponse get(@PathVariable Long id) {
 		ORSResponse res = new ORSResponse();
 
 		RoleDTO dto = service.findById(id);
 		if (dto != null) {
+			res.addData(dto);
 			res.setSuccess(true);
 		}
 
@@ -101,4 +111,24 @@ public class RoleCtl extends BaseCtl {
 		return res;
 	}
 
+	@GetMapping("search/{pageNo}")
+	public ORSResponse search(@PathVariable int pageNo) {
+
+		ORSResponse res = new ORSResponse();
+
+		// RoleDTO dto =
+
+		int pageSize = 5;
+
+		List<RoleDTO> list = service.search(null, pageNo, pageSize);
+
+		if (list.size() == 0) {
+			res.addMessage("Result not Found");
+		} else {
+			res.setSuccess(true);
+			res.addData(list);
+		}
+		return res;
+
+	}
 }

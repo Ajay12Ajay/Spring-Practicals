@@ -17,7 +17,7 @@ public class BaseForm {
 	}
 
 	public BaseDTO initDTO(BaseDTO dto) {
-		if (id != null & id > 0) {
+		if (id != null && id > 0) {
 			dto.setId(id);
 		} else {
 			dto.setId(null);
