@@ -1,9 +1,13 @@
 package com.rays.ctl;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -72,6 +76,65 @@ public class UserCtl extends BaseCtl {
 		} else {
 			System.out.println("Data Not updated");
 		}
+		return res;
+
+	}
+
+	@PostMapping("delete/{ids}")
+	public ORSResponse delete(@PathVariable(required = false) long[] ids) {
+
+		ORSResponse res = new ORSResponse();
+
+		if (ids != null && ids.length > 0) {
+			for (long id : ids) {
+				service.delete(id);
+			}
+			res.setSuccess(true);
+			res.addMessage("record deleted successfully");
+		} else {
+			res.addMessage("select at least one record");
+		}
+
+		return res;
+	}
+
+	@GetMapping("get/{id}")
+	public ORSResponse get(@PathVariable Long id) {
+
+		ORSResponse res = new ORSResponse();
+		UserDTO dto = service.findById(id);
+
+		if (dto != null) {
+			res.addData(dto);
+			res.setSuccess(true);
+		}
+
+		res.addData(dto);
+		return res;
+	}
+
+	@GetMapping("search/{pageNo}")
+	public ORSResponse search(@RequestBody(required = false) UserFrom form, @PathVariable int pageNo) {
+
+		ORSResponse res = new ORSResponse();
+
+		UserDTO dto = null;
+
+		int pageSize = 5;
+
+		if (form != null) {
+			dto = (UserDTO) form.getDto();
+		}
+
+		List<UserDTO> list = service.search(dto, pageNo, pageSize);
+
+		if (list.size() == 0) {
+			res.addMessage("Result not Found");
+		} else {
+			res.setSuccess(true);
+			res.addData(list);
+		}
+
 		return res;
 
 	}

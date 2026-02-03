@@ -26,6 +26,7 @@ public class UserFrom extends BaseForm {
 	@NotNull(message = "dob is required")
 	private Date dob;
 
+	@NotNull(message = "roleId is required")
 	private Long roleId;
 
 	public String getFirstName() {

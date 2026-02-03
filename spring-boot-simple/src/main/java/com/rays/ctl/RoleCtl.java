@@ -112,15 +112,19 @@ public class RoleCtl extends BaseCtl {
 	}
 
 	@GetMapping("search/{pageNo}")
-	public ORSResponse search(@PathVariable int pageNo) {
+	public ORSResponse search(@RequestBody(required = false) RoleForm form, @PathVariable int pageNo) {
 
 		ORSResponse res = new ORSResponse();
+		RoleDTO dto = null;
 
 		// RoleDTO dto =
-
+		if (form != null) {
+			dto = (RoleDTO) form.getDto();
+		}
 		int pageSize = 5;
+		// RoleDTO dto = (RoleDTO) form.getDto();
 
-		List<RoleDTO> list = service.search(null, pageNo, pageSize);
+		List<RoleDTO> list = service.search(dto, pageNo, pageSize);
 
 		if (list.size() == 0) {
 			res.addMessage("Result not Found");
