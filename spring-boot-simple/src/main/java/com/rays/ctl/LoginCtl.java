@@ -17,13 +17,13 @@ import com.rays.form.LoginForm;
 import com.rays.service.UserService;
 
 @RestController
-@RequestMapping(value = "Login")
+@RequestMapping(value = "auth")
 public class LoginCtl extends BaseCtl {
 
 	@Autowired
 	UserService service;
 
-	@PostMapping("auth")
+	@PostMapping("login")
 	public ORSResponse login(@RequestBody @Valid LoginForm form, BindingResult bindingResult, HttpSession session) {
 
 		ORSResponse res = new ORSResponse();
@@ -37,6 +37,7 @@ public class LoginCtl extends BaseCtl {
 		UserDTO dto = service.authenticate(form.getLogin(), form.getPassword());
 
 		if (dto != null) {
+			session.setAttribute("user", dto);
 			res.setSuccess(true);
 			res.addMessage("user Login Successful....");
 			res.addData(dto);
