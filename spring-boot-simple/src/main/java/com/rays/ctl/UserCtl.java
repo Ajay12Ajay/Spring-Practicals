@@ -1,7 +1,10 @@
 package com.rays.ctl;
 
+import java.io.OutputStream;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +14,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rays.common.BaseCtl;
+import com.rays.common.DropDownList;
 import com.rays.common.ORSResponse;
+import com.rays.dto.AttachmentDTO;
 import com.rays.dto.RoleDTO;
 import com.rays.dto.UserDTO;
 import com.rays.form.RoleForm;
 import com.rays.form.UserFrom;
+import com.rays.service.AttachmentService;
+import com.rays.service.RoleService;
 import com.rays.service.UserService;
 
 @RestController
@@ -28,6 +37,22 @@ public class UserCtl extends BaseCtl {
 
 	@Autowired
 	UserService service;
+
+	@Autowired
+	RoleService roleService;
+
+	@Autowired
+	AttachmentService attchService;
+
+	@GetMapping("preload")
+	public ORSResponse preload() {
+		ORSResponse res = new ORSResponse();
+
+		List<DropDownList> roleList = roleService.search(null, 0, 0);
+		res.setSuccess(true);
+		res.addResult("roleList", roleList);
+		return res;
+	}
 
 	@PostMapping("save")
 	public ORSResponse save(@RequestBody @Valid UserFrom form, BindingResult bindingResult) {
@@ -137,6 +162,58 @@ public class UserCtl extends BaseCtl {
 
 		return res;
 
+	}
+
+	@PostMapping("profilePic/{userId}")
+	public ORSResponse uploadPic(@PathVariable Long userId, @RequestParam("file") MultipartFile file,
+			HttpServletRequest request) {
+
+		AttachmentDTO attachmentDto = new AttachmentDTO(file);
+		attachmentDto.setDescription("profilePic");
+		attachmentDto.setUserId(userId);
+
+		UserDTO userDto = service.findById(userId);
+
+		if (userDto.getImageId() != null && userDto.getImageId() > 0) {
+			attachmentDto.setId(userDto.getImageId());
+		}
+
+		Long imageId = attchService.save(attachmentDto);
+
+		if (userDto.getImageId() == null) {
+			userDto.setImageId(imageId);
+			service.update(userDto);
+		}
+
+		ORSResponse res = new ORSResponse();
+		res.addResult("imageId", imageId);
+		res.setSuccess(true);
+
+		return res;
+	}
+
+	@GetMapping("profilePic/{userId}")
+	public @ResponseBody void downloadPic(@PathVariable Long userId, HttpServletResponse response) {
+		try {
+			UserDTO userDto = service.findById(userId);
+			AttachmentDTO attachmentDTO = null;
+
+			if (userDto != null) {
+				attachmentDTO = attchService.findByPk(userDto.getImageId());
+			}
+
+			if (attachmentDTO != null) {
+				response.setContentType(attachmentDTO.getType());
+				OutputStream out = response.getOutputStream();
+				out.write(attachmentDTO.getDoc());
+				out.close();
+			} else {
+				response.getWriter().write("ERROR: File not found...!");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 
 }
