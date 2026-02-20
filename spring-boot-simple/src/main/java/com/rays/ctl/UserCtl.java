@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -138,7 +139,7 @@ public class UserCtl extends BaseCtl {
 		return res;
 	}
 
-	@GetMapping("search/{pageNo}")
+	@RequestMapping(value = "search/{pageNo}", method = { RequestMethod.GET, RequestMethod.POST })
 	public ORSResponse search(@RequestBody(required = false) UserFrom form, @PathVariable int pageNo) {
 
 		ORSResponse res = new ORSResponse();

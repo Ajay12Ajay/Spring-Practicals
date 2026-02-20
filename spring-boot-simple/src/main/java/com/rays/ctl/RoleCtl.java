@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rays.common.BaseCtl;
@@ -111,7 +112,8 @@ public class RoleCtl extends BaseCtl {
 		return res;
 	}
 
-	@GetMapping("search/{pageNo}")
+	// @GetMapping("search/{pageNo}"
+	@RequestMapping(value = "search/{pageNo}" , method = {RequestMethod.GET,RequestMethod.POST})
 	public ORSResponse search(@RequestBody(required = false) RoleForm form, @PathVariable int pageNo) {
 
 		ORSResponse res = new ORSResponse();
