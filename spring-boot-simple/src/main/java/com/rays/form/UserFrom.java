@@ -80,7 +80,7 @@ public class UserFrom extends BaseForm {
 	@Override
 	public BaseDTO getDto() {
 
-		UserDTO dto = new UserDTO();
+		UserDTO dto = (UserDTO) initDTO(new UserDTO());
 		dto.setFirstName(firstName);
 		dto.setLastName(lastName);
 		dto.setLogin(login);

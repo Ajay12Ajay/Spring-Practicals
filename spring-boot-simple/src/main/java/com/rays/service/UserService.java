@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rays.dao.UserDAO;
+import com.rays.dto.RoleDTO;
 import com.rays.dto.UserDTO;
 
 @Service
@@ -15,6 +16,9 @@ public class UserService {
 
 	@Autowired
 	public UserDAO dao;
+
+	@Autowired
+	public RoleService roleService;
 
 	public UserDTO authenticate(String login, String password) {
 		UserDTO dto = dao.findByUniqueKey("login", login);
@@ -28,12 +32,16 @@ public class UserService {
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Long add(UserDTO dto) {
+		RoleDTO role = roleService.findById(dto.getRoleId());
+		dto.setRoleName(role.getName());
 		Long id = dao.add(dto);
 		return id;
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(UserDTO dto) {
+		RoleDTO role = roleService.findById(dto.getRoleId());
+		dto.setRoleName(role.getName());
 		dao.update(dto);
 	}
 

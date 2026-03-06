@@ -79,7 +79,8 @@ public class RoleCtl extends BaseCtl {
 		return res;
 	}
 
-	@PostMapping("delete/{ids}")
+	// @PostMapping("delete/{ids}")
+	@RequestMapping(value = "delete/{ids}", method = { RequestMethod.GET, RequestMethod.POST })
 	public ORSResponse delete(@PathVariable(required = false) long[] ids) {
 
 		ORSResponse res = new ORSResponse();
@@ -113,7 +114,7 @@ public class RoleCtl extends BaseCtl {
 	}
 
 	// @GetMapping("search/{pageNo}"
-	@RequestMapping(value = "search/{pageNo}" , method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "search/{pageNo}", method = { RequestMethod.GET, RequestMethod.POST })
 	public ORSResponse search(@RequestBody(required = false) RoleForm form, @PathVariable int pageNo) {
 
 		ORSResponse res = new ORSResponse();

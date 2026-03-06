@@ -70,7 +70,7 @@ public class UserCtl extends BaseCtl {
 
 		dto = (UserDTO) form.getDto();
 
-		long i = service.add(dto);
+		long i = service.save(dto);
 
 		if (i != 0) {
 			res.setSuccess(true);
@@ -106,7 +106,8 @@ public class UserCtl extends BaseCtl {
 
 	}
 
-	@PostMapping("delete/{ids}")
+	// @PostMapping("delete/{ids}")
+	@RequestMapping(value = "delete/{ids}", method = { RequestMethod.GET, RequestMethod.POST })
 	public ORSResponse delete(@PathVariable(required = false) long[] ids) {
 
 		ORSResponse res = new ORSResponse();

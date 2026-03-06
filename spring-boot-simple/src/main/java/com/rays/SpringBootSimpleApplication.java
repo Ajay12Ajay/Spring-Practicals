@@ -13,9 +13,8 @@ import com.rays.common.FrontCtl;
 @SpringBootApplication
 public class SpringBootSimpleApplication {
 
-	/*
-	 * @Autowired private FrontCtl frontCtl;
-	 */
+	@Autowired
+	private FrontCtl frontCtl;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootSimpleApplication.class, args);
@@ -26,15 +25,18 @@ public class SpringBootSimpleApplication {
 	public WebMvcConfigurer webConfig() {
 		return new WebMvcConfigurer() {
 
-			/*
-			 * @Override public void addInterceptors(InterceptorRegistry registry) { // TODO
-			 * Auto-generated method stub
-			 * registry.addInterceptor(frontCtl).addPathPatterns("/**").excludePathPatterns(
-			 * "/auth/**"); }
-			 */
+			@Override
+			public void addInterceptors(InterceptorRegistry registry) {
+				registry.addInterceptor(frontCtl).addPathPatterns("/**").excludePathPatterns("/auth/**")
+						.excludePathPatterns("/User/profilePic/**");
+			}
 
+			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+				
+				registry.addMapping("/**").allowedOrigins("http://localhost:4200")
+						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS").allowedHeaders("*")
+						.allowCredentials(true);
 			}
 		};
 	}
