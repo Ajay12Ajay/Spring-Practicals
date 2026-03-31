@@ -1,0 +1,99 @@
+<style>
+  .hm {
+    background-image: url('assets/img/welcome.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-top: 200px;
+    padding-bottom: 175px;
+  }
+</style>
+<app-navbar></app-navbar>
+
+<div class="hm">
+  <div class="row pt-3">
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4">
+      <div class="card input-group-addon">
+        <div class="card-body">
+
+          <!-- Title -->
+          <h3 class="text-center text-primary" *ngIf="!form.data.id">
+            Add Order
+          </h3>
+
+          <h3 class="text-center text-primary" *ngIf="form.data.id > 0">
+            Update Order
+          </h3>
+
+          <!-- Success -->
+          <div *ngIf="!form.error && form.message"
+               class="alert alert-success text-center">
+            {{ form.message }}
+          </div>
+
+          <!-- Error -->
+          <div *ngIf="form.error && form.message"
+               class="alert alert-danger text-center">
+            {{ form.message }}
+          </div>
+
+          <!-- Press Release Id-->
+          <span><b>Press Release Id</b> *</span>
+          <input type="text" class="form-control mb-2"
+                 [(ngModel)]="form.data.pressReleaseId"
+                 name="pressReleaseId"
+                 placeholder="Enter  Code">
+          <small class="text-danger">{{ form.inputerror.pressReleaseId }}</small>
+
+          <!-- Title -->
+          <span><b>Title</b> *</span>
+          <input type="text" class="form-control mb-2"
+                 [(ngModel)]="form.data.title"
+                 name="title"
+                 placeholder="Enter Title">
+          <small class="text-danger">{{ form.inputerror.title }}</small>
+
+          <!-- Author -->
+          <span><b>Author</b> *</span>
+          <input type="text" class="form-control mb-2"
+                 [(ngModel)]="form.data.author"
+                 name="author"
+                 placeholder="Enter Author">
+          <small class="text-danger">{{ form.inputerror.author }}</small>
+
+          <!-- Date of Release -->
+            <span class="pl-sm-5"><b>Date of Release</b> <span style="color: red;">*</span></span><br>
+            <div class="col-sm-12">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-calendar grey-text" style="font-size: 1rem;"></i></div>
+                </div>
+                <input type="date" class="form-control" name="releaseDate"
+                  [(ngModel)]="form.data.releaseDate"
+                  [ngModel]="form.data.releaseDate | date:'yyyy-MM-dd'"
+                  placeholder="Enter Date of Release"
+                  style="width: 97%;">
+              </div>
+            </div>
+
+          
+
+          <!-- Buttons -->
+          <div class="text-center mt-3">
+            <button class="btn btn-success" (click)="submit()">Save</button>
+            &nbsp;
+            <button class="btn btn-warning"
+                    (click)="forward('pressrleaselist')">List</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+<app-footer></app-footer>
