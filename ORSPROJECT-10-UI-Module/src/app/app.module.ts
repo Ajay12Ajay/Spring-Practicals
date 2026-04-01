@@ -43,6 +43,8 @@ import { OrderComponent } from './order/order.component';
 import { OrderListComponent } from './order/order-list.component';
 import { PressreleaseComponent } from './pressrelease/pressrelease.component';
 import { PressreleaseListComponent } from './pressrelease/pressrelease-list.component';
+import { EmiComponent } from './emi/emi.component';
+import { EmiListComponent } from './emi/emi-list.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -85,7 +87,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     OrderListComponent,
     PressreleaseComponent,
     PressreleaseListComponent,
-    PressreleaseComponent
+    PressreleaseComponent,
+    EmiComponent,
+    EmiListComponent
   ],
   imports: [
     BrowserModule,
