@@ -32,6 +32,8 @@ import { PressreleaseComponent } from './pressrelease/pressrelease.component';
 import { PressreleaseListComponent } from './pressrelease/pressrelease-list.component';
 import { EmiComponent } from './emi/emi.component';
 import { EmiListComponent } from './emi/emi-list.component';
+import { VaccineComponent } from './vaccine/vaccine.component';
+import { VaccineListComponent } from './vaccine/vaccine-list.component';
 
 
 
@@ -221,6 +223,18 @@ const routes: Routes = [
   {
     path: 'emilist',
     component: EmiListComponent
+  },
+  {
+    path: 'vaccine',
+    component: VaccineComponent
+  },
+  {
+    path: 'vaccine/:id',
+    component: VaccineComponent
+  },
+  {
+    path: 'vaccinelist',
+    component: VaccineListComponent
   },
 
 ];

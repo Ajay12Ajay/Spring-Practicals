@@ -45,6 +45,8 @@ import { PressreleaseComponent } from './pressrelease/pressrelease.component';
 import { PressreleaseListComponent } from './pressrelease/pressrelease-list.component';
 import { EmiComponent } from './emi/emi.component';
 import { EmiListComponent } from './emi/emi-list.component';
+import { VaccineComponent } from './vaccine/vaccine.component';
+import { VaccineListComponent } from './vaccine/vaccine-list.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -89,7 +91,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     PressreleaseListComponent,
     PressreleaseComponent,
     EmiComponent,
-    EmiListComponent
+    EmiListComponent,
+    VaccineComponent,
+    VaccineListComponent
   ],
   imports: [
     BrowserModule,

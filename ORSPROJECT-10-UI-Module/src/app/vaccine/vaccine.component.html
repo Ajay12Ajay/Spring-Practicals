@@ -1,0 +1,94 @@
+<style>
+    .hm {
+        background-image: url('assets/img/welcome.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        padding-top: 200px;
+        padding-bottom: 175px;
+    }
+</style>
+<app-navbar></app-navbar>
+
+<div class="hm">
+    <div class="row pt-3">
+        <div class="col-md-4"></div>
+
+        <div class="col-md-4">
+            <div class="card input-group-addon">
+                <div class="card-body">
+
+                    <!-- Title -->
+                    <h3 class="text-center text-primary" *ngIf="!form.data.id">
+                        Add VACCINE
+                    </h3>
+
+                    <h3 class="text-center text-primary" *ngIf="form.data.id > 0">
+                        Update VACCINE
+                    </h3>
+
+                    <!-- Success -->
+                    <div *ngIf="!form.error && form.message" class="alert alert-success text-center">
+                        {{ form.message }}
+                    </div>
+
+                    <!-- Error -->
+                    <div *ngIf="form.error && form.message" class="alert alert-danger text-center">
+                        {{ form.message }}
+                    </div>
+
+                    <!-- VACCINE ID -->
+                    <span><b>VACCINE ID</b> *</span>
+                    <input type="text" class="form-control mb-2" [(ngModel)]="form.data.vaccineId" name="vaccineId"
+                        placeholder="Enter VACCINE ID">
+                    <small class="text-danger">{{ form.inputerror.vaccineId }}</small>
+
+                    <!-- VACCINE NAME -->
+                    <span><b>VACCINE NAME</b> *</span>
+                    <input type="text" class="form-control mb-2" [(ngModel)]="form.data.vaccineName" name="vaccineName"
+                        placeholder="Enter VACCINE NAME">
+                    <small class="text-danger">{{ form.inputerror.vaccineName }}</small>
+
+                    <!-- MANUFACTURER -->
+                    <span><b>MANUFACTURER</b> *</span>
+                    <input type="text" class="form-control mb-2" [(ngModel)]="form.data.manufacturer"
+                        name="manufacturer" placeholder="Enter MANUFACTURER">
+                    <small class="text-danger">{{ form.inputerror.manufacturer }}</small>
+
+
+
+
+                    <!-- EXPIRY Date -->
+                    <span><b>EXPIRY DATE</b> <span style="color: red;">*</span></span><br>
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-calendar grey-text"
+                                        style="font-size: 1rem;"></i></div>
+                            </div>
+                            <input type="date" class="form-control" name="expiryDate" [(ngModel)]="form.data.expiryDate"
+                                [ngModel]="form.data.expiryDate | date:'yyyy-MM-dd'" placeholder="Enter EXPIRY Date"
+                                style="width: 97%;">
+                        </div>
+                    </div>
+                    <small class="text-danger">{{ form.inputerror.expiryDate }}</small>
+
+
+
+
+                    <!-- Buttons -->
+                    <div class="text-center mt-3">
+                        <button class="btn btn-success" (click)="submit()">Save</button>
+                        &nbsp;
+                        <button class="btn btn-warning" (click)="forward('vaccinelist')">List</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+<app-footer></app-footer>
