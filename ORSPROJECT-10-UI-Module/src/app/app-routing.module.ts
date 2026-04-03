@@ -34,6 +34,8 @@ import { EmiComponent } from './emi/emi.component';
 import { EmiListComponent } from './emi/emi-list.component';
 import { VaccineComponent } from './vaccine/vaccine.component';
 import { VaccineListComponent } from './vaccine/vaccine-list.component';
+import { PromissoryComponent } from './promissory/promissory.component';
+import { PromissoryListComponent } from './promissory/promissory-list.component';
 
 
 
@@ -235,6 +237,18 @@ const routes: Routes = [
   {
     path: 'vaccinelist',
     component: VaccineListComponent
+  },
+  {
+    path: 'promissory',
+    component: PromissoryComponent
+  },
+  {
+    path: 'promissory/:id',
+    component: PromissoryComponent
+  },
+  {
+    path: 'promissorylist',
+    component: PromissoryListComponent
   },
 
 ];

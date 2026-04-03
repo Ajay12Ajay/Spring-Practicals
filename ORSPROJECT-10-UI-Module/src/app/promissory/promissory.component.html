@@ -1,0 +1,110 @@
+<style>
+  .hm {
+    background-image: url('assets/img/welcome.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-top: 200px;
+    padding-bottom: 175px;
+  }
+</style>
+<app-navbar></app-navbar>
+
+<div class="hm">
+  <div class="row pt-3">
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4">
+      <div class="card input-group-addon">
+        <div class="card-body">
+
+          <!-- Title -->
+          <h3 class="text-center text-primary" *ngIf="!form.data.id">
+            Add Promissory
+          </h3>
+
+          <h3 class="text-center text-primary" *ngIf="form.data.id > 0">
+            Update Promissory
+          </h3>
+
+          <!-- Success -->
+          <div *ngIf="!form.error && form.message"
+               class="alert alert-success text-center">
+            {{ form.message }}
+          </div>
+
+          <!-- Error -->
+          <div *ngIf="form.error && form.message"
+               class="alert alert-danger text-center">
+            {{ form.message }}
+          </div>
+
+          <!-- Promissory Note ID -->
+          <span><b>Promissory Note ID</b> *</span>
+          <input type="text" class="form-control mb-2"
+                 [(ngModel)]="form.data.promissoryNoteId"
+                 name="promissoryNoteId"
+                 placeholder="Enter Promissory Note ID">
+          <small class="text-danger">{{ form.inputerror.promissoryNoteId }}</small>
+
+          <!-- Payee Name -->
+          <span><b>Payee Name</b> *</span>
+          <input type="text" class="form-control mb-2"
+                 [(ngModel)]="form.data.payeeName"
+                 name="payeeName"
+                 placeholder="Enter Payee Name">
+          <small class="text-danger">{{ form.inputerror.payeeName }}</small>
+
+          <!-- Face Amount -->
+          <span><b>Face Amount</b> *</span>
+          <input type="number" class="form-control mb-2"
+                 [(ngModel)]="form.data.faceAmount"
+                 name="faceAmount"
+                 placeholder="Enter Face Amount">
+          <small class="text-danger">{{ form.inputerror.faceAmount }}</small>
+
+          <!-- ISSUE Date -->
+            <span><b>ISSUE DATE</b> <span style="color: red;">*</span></span><br>
+            <div class="col-sm-12">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-calendar grey-text" style="font-size: 1rem;"></i></div>
+                </div>
+                <input type="date" class="form-control" name="issueDate"
+                  [(ngModel)]="form.data.issueDate"
+                  [ngModel]="form.data.issueDate | date:'yyyy-MM-dd'"
+                  placeholder="Enter ISSUE Date"
+                  style="width: 97%;">
+              </div>
+            </div>
+            <small class="text-danger">{{ form.inputerror.issueDate }}</small>
+
+          <!-- Status -->
+          <span><b>Status</b> *</span>
+          <select class="form-control mb-2"
+                  [(ngModel)]="form.data.status"
+                  name="status">
+            <option value="undefined">--Select--</option>
+            <option value="Pending">Pending</option>
+            <option value="Processing">Processing</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+          <small class="text-danger">{{ form.inputerror.status }}</small>
+
+          <!-- Buttons -->
+          <div class="text-center mt-3">
+            <button class="btn btn-success" (click)="submit()">Save</button>
+            &nbsp;
+            <button class="btn btn-warning"
+                    (click)="forward('promissorylist')">List</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+<app-footer></app-footer>

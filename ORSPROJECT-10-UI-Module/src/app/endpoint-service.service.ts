@@ -21,4 +21,5 @@ export class EndpointServiceService {
   public PRESSRELEASE = this.SERVER_URL + "/PressRelease";
   public EMI = this.SERVER_URL + "/EMI";
   public VACCINE = this.SERVER_URL + "/Vaccine";
+  public PROMISSORY = this.SERVER_URL + "/Promissory";
 }

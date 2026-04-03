@@ -47,6 +47,8 @@ import { EmiComponent } from './emi/emi.component';
 import { EmiListComponent } from './emi/emi-list.component';
 import { VaccineComponent } from './vaccine/vaccine.component';
 import { VaccineListComponent } from './vaccine/vaccine-list.component';
+import { PromissoryComponent } from './promissory/promissory.component';
+import { PromissoryListComponent } from './promissory/promissory-list.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -93,7 +95,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     EmiComponent,
     EmiListComponent,
     VaccineComponent,
-    VaccineListComponent
+    VaccineListComponent,
+    PromissoryComponent,
+    PromissoryListComponent
   ],
   imports: [
     BrowserModule,
