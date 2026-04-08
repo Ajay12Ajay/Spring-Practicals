@@ -36,6 +36,8 @@ import { VaccineComponent } from './vaccine/vaccine.component';
 import { VaccineListComponent } from './vaccine/vaccine-list.component';
 import { PromissoryComponent } from './promissory/promissory.component';
 import { PromissoryListComponent } from './promissory/promissory-list.component';
+import { TimezoneComponent } from './timezone/timezone.component';
+import { TimezoneListComponent } from './timezone/timezone-list.component';
 
 
 
@@ -249,6 +251,18 @@ const routes: Routes = [
   {
     path: 'promissorylist',
     component: PromissoryListComponent
+  },
+  {
+    path: 'timezone',
+    component: TimezoneComponent
+  },
+  {
+    path: 'timezone/:id',
+    component: TimezoneComponent
+  },
+  {
+    path: 'timezonelist',
+    component: TimezoneListComponent
   },
 
 ];
