@@ -51,6 +51,8 @@ import { PromissoryComponent } from './promissory/promissory.component';
 import { PromissoryListComponent } from './promissory/promissory-list.component';
 import { TimezoneComponent } from './timezone/timezone.component';
 import { TimezoneListComponent } from './timezone/timezone-list.component';
+import { DronedeliveryComponent } from './dronedelivery/dronedelivery.component';
+import { DronedeliveryListComponent } from './dronedelivery/dronedelivery-list.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -101,7 +103,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     PromissoryComponent,
     PromissoryListComponent,
     TimezoneComponent,
-    TimezoneListComponent
+    TimezoneListComponent,
+    DronedeliveryComponent,
+    DronedeliveryListComponent
   ],
   imports: [
     BrowserModule,

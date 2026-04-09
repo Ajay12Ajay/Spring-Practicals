@@ -38,6 +38,8 @@ import { PromissoryComponent } from './promissory/promissory.component';
 import { PromissoryListComponent } from './promissory/promissory-list.component';
 import { TimezoneComponent } from './timezone/timezone.component';
 import { TimezoneListComponent } from './timezone/timezone-list.component';
+import { DronedeliveryComponent } from './dronedelivery/dronedelivery.component';
+import { DronedeliveryListComponent } from './dronedelivery/dronedelivery-list.component';
 
 
 
@@ -263,6 +265,18 @@ const routes: Routes = [
   {
     path: 'timezonelist',
     component: TimezoneListComponent
+  },
+  {
+    path: 'dronedelivery',
+    component: DronedeliveryComponent
+  },
+  {
+    path: 'dronedelivery/:id',
+    component: DronedeliveryComponent
+  },
+  {
+    path: 'dronedeliverylist',
+    component: DronedeliveryListComponent
   },
 
 ];

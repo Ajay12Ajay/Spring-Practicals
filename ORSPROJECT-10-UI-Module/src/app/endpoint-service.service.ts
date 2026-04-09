@@ -23,4 +23,5 @@ export class EndpointServiceService {
   public VACCINE = this.SERVER_URL + "/Vaccine";
   public PROMISSORY = this.SERVER_URL + "/Promissory";
   public TIMEZONE = this.SERVER_URL + "/Timezone";
+  public DRONEDELIVERY = this.SERVER_URL + "/DroneDelivery";
 }

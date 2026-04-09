@@ -1,0 +1,95 @@
+<style>
+  .hm {
+    background-image: url('assets/img/welcome.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-top: 200px;
+    padding-bottom: 175px;
+  }
+</style>
+<app-navbar></app-navbar>
+
+<div class="hm">
+  <div class="row pt-3">
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4">
+      <div class="card input-group-addon">
+        <div class="card-body">
+
+          <!-- Title -->
+          <h3 class="text-center text-primary" *ngIf="!form.data.id">
+            Add Drone Delivery
+          </h3>
+
+          <h3 class="text-center text-primary" *ngIf="form.data.id > 0">
+            Update Drone Delivery
+          </h3>
+
+          <!-- Success -->
+          <div *ngIf="!form.error && form.message"
+               class="alert alert-success text-center">
+            {{ form.message }}
+          </div>
+
+          <!-- Error -->
+          <div *ngIf="form.error && form.message"
+               class="alert alert-danger text-center">
+            {{ form.message }}
+          </div>
+
+          <!-- Drone ID -->
+          <span><b>Drone ID</b> *</span>
+          <input type="text" class="form-control mb-2"
+                 [(ngModel)]="form.data.droneId"
+                 name="droneId"
+                 placeholder="Enter Drone ID">
+          <small class="text-danger">{{ form.inputerror.droneId }}</small>
+
+          <!-- Delivery Zone -->
+          <span><b>Delivery Zone</b> *</span>
+          <input type="text" class="form-control mb-2"
+                 [(ngModel)]="form.data.deliveryZone"
+                 name="deliveryZone"
+                 placeholder="Enter Delivery Zone">
+          <small class="text-danger">{{ form.inputerror.deliveryZone }}</small>
+
+          <!-- Paylod Weight -->
+          <span><b>Paylod Weight</b> *</span>
+          <input type="number" class="form-control mb-2"
+                 [(ngModel)]="form.data.payloadWeight"
+                 name="payloadWeight"
+                 placeholder="Enter Paylod Weight">
+          <small class="text-danger">{{ form.inputerror.payloadWeight }}</small>
+
+          <!-- Status -->
+          <span><b>Status</b> *</span>
+          <select class="form-control mb-2"
+                  [(ngModel)]="form.data.flightStatus"
+                  name="flightStatus">
+            <option value="undefined">--Select--</option>
+            <option value="Ready">Ready</option>
+            <option value="In_Flight">In_Flight</option>
+            <option value="Landed">Landed</option>
+            <option value="Maintenance">Maintenance</option>
+          </select>
+          <small class="text-danger">{{ form.inputerror.flightStatus }}</small>
+
+          <!-- Buttons -->
+          <div class="text-center mt-3">
+            <button class="btn btn-success" (click)="submit()">Save</button>
+            &nbsp;
+            <button class="btn btn-warning"
+                    (click)="forward('dronedeliverylist')">List</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+<app-footer></app-footer>
