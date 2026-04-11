@@ -24,4 +24,7 @@ export class EndpointServiceService {
   public PROMISSORY = this.SERVER_URL + "/Promissory";
   public TIMEZONE = this.SERVER_URL + "/Timezone";
   public DRONEDELIVERY = this.SERVER_URL + "/DroneDelivery";
+  public NOTIFICATION = this.SERVER_URL + "/Notification";
+  public LOYALTY = this.SERVER_URL + "/Loyalty";
+
 }

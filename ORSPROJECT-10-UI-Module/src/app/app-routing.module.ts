@@ -40,6 +40,10 @@ import { TimezoneComponent } from './timezone/timezone.component';
 import { TimezoneListComponent } from './timezone/timezone-list.component';
 import { DronedeliveryComponent } from './dronedelivery/dronedelivery.component';
 import { DronedeliveryListComponent } from './dronedelivery/dronedelivery-list.component';
+import { NotificationComponent } from './notification/notification.component';
+import { NotificationListComponent } from './notification/notification-list.component';
+import { LoyaltyComponent } from './loyalty/loyalty.component';
+import { LoyaltyListComponent } from './loyalty/loyalty-list.component';
 
 
 
@@ -278,6 +282,31 @@ const routes: Routes = [
     path: 'dronedeliverylist',
     component: DronedeliveryListComponent
   },
+  {
+    path: 'notification',
+    component: NotificationComponent
+  },
+  {
+    path: 'notification/:id',
+    component: NotificationComponent
+  },
+  {
+    path: 'notificationlist',
+    component: NotificationListComponent
+  },
+  {
+    path: 'loyalty',
+    component: LoyaltyComponent
+  },
+  {
+    path: 'loyalty/:id',
+    component: LoyaltyComponent
+  },
+  {
+    path: 'loyaltylist',
+    component: LoyaltyListComponent
+  },
+
 
 ];
 

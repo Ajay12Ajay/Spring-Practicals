@@ -53,6 +53,10 @@ import { TimezoneComponent } from './timezone/timezone.component';
 import { TimezoneListComponent } from './timezone/timezone-list.component';
 import { DronedeliveryComponent } from './dronedelivery/dronedelivery.component';
 import { DronedeliveryListComponent } from './dronedelivery/dronedelivery-list.component';
+import { NotificationComponent } from './notification/notification.component';
+import { NotificationListComponent } from './notification/notification-list.component';
+import { LoyaltyComponent } from './loyalty/loyalty.component';
+import { LoyaltyListComponent } from './loyalty/loyalty-list.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -105,7 +109,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     TimezoneComponent,
     TimezoneListComponent,
     DronedeliveryComponent,
-    DronedeliveryListComponent
+    DronedeliveryListComponent,
+    NotificationComponent,
+    NotificationListComponent,
+    LoyaltyComponent,
+    LoyaltyListComponent
   ],
   imports: [
     BrowserModule,
