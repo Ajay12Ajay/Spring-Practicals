@@ -44,6 +44,8 @@ import { NotificationComponent } from './notification/notification.component';
 import { NotificationListComponent } from './notification/notification-list.component';
 import { LoyaltyComponent } from './loyalty/loyalty.component';
 import { LoyaltyListComponent } from './loyalty/loyalty-list.component';
+import { ExportComponent } from './export/export.component';
+import { ExportListComponent } from './export/export-list.component';
 
 
 
@@ -305,6 +307,18 @@ const routes: Routes = [
   {
     path: 'loyaltylist',
     component: LoyaltyListComponent
+  },
+  {
+    path: 'export',
+    component: ExportComponent
+  },
+  {
+    path: 'export/:id',
+    component: ExportComponent
+  },
+  {
+    path: 'exportlist',
+    component: ExportListComponent
   },
 
 

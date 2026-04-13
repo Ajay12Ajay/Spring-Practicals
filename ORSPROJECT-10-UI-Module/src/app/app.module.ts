@@ -57,6 +57,8 @@ import { NotificationComponent } from './notification/notification.component';
 import { NotificationListComponent } from './notification/notification-list.component';
 import { LoyaltyComponent } from './loyalty/loyalty.component';
 import { LoyaltyListComponent } from './loyalty/loyalty-list.component';
+import { ExportComponent } from './export/export.component';
+import { ExportListComponent } from './export/export-list.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -113,7 +115,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotificationComponent,
     NotificationListComponent,
     LoyaltyComponent,
-    LoyaltyListComponent
+    LoyaltyListComponent,
+    ExportComponent,
+    ExportListComponent
   ],
   imports: [
     BrowserModule,

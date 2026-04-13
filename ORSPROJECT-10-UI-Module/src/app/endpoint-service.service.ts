@@ -26,5 +26,6 @@ export class EndpointServiceService {
   public DRONEDELIVERY = this.SERVER_URL + "/DroneDelivery";
   public NOTIFICATION = this.SERVER_URL + "/Notification";
   public LOYALTY = this.SERVER_URL + "/Loyalty";
+  public EXPORT = this.SERVER_URL + "/Export";
 
 }
