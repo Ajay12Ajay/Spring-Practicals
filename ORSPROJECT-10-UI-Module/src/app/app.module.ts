@@ -59,6 +59,10 @@ import { LoyaltyComponent } from './loyalty/loyalty.component';
 import { LoyaltyListComponent } from './loyalty/loyalty-list.component';
 import { ExportComponent } from './export/export.component';
 import { ExportListComponent } from './export/export-list.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PaymentListComponent } from './payment/payment-list.component';
+import { OrganizationComponent } from './organization/organization.component';
+import { OrganizationListComponent } from './organization/organization-list.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -117,7 +121,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoyaltyComponent,
     LoyaltyListComponent,
     ExportComponent,
-    ExportListComponent
+    ExportListComponent,
+    PaymentComponent,
+    PaymentListComponent,
+    OrganizationComponent,
+    OrganizationListComponent
   ],
   imports: [
     BrowserModule,

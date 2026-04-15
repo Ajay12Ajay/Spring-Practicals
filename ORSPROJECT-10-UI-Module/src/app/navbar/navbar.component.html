@@ -214,6 +214,22 @@
           </div>
         </li>
 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">Payment Method  </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" [routerLink]="['/payment']"><i class="fa fa-user-tie"></i> Add Payment</a>
+            <a class="dropdown-item" [routerLink]="['/paymentlist']"><i class="fa fa-users"></i> Payment List</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">Organization  </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" [routerLink]="['/organization']"><i class="fa fa-user-tie"></i> Add Organization</a>
+            <a class="dropdown-item" [routerLink]="['/organizationlist']"><i class="fa fa-users"></i> Organization List</a>
+          </div>
+        </li>
+
         <!-- Logged in user welcome dropdown -->
         <li class="nav-item dropdown ml-3">
           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">

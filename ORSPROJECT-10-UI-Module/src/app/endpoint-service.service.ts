@@ -27,5 +27,7 @@ export class EndpointServiceService {
   public NOTIFICATION = this.SERVER_URL + "/Notification";
   public LOYALTY = this.SERVER_URL + "/Loyalty";
   public EXPORT = this.SERVER_URL + "/Export";
+  public PAYMENT = this.SERVER_URL + "/PaymentMethod";
+  public ORGANIZATION = this.SERVER_URL + "/Organization";
 
 }
