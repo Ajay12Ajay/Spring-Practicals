@@ -50,6 +50,8 @@ import { PaymentComponent } from './payment/payment.component';
 import { PaymentListComponent } from './payment/payment-list.component';
 import { OrganizationComponent } from './organization/organization.component';
 import { OrganizationListComponent } from './organization/organization-list.component';
+import { HealthcheckComponent } from './healthcheck/healthcheck.component';
+import { HealthcheckListComponent } from './healthcheck/healthcheck-list.component';
 
 
 
@@ -347,6 +349,18 @@ const routes: Routes = [
   {
     path: 'organizationlist',
     component: OrganizationListComponent
+  },
+  {
+    path: 'healthcheck',
+    component: HealthcheckComponent
+  },
+  {
+    path: 'healthcheck/:id',
+    component: HealthcheckComponent
+  },
+  {
+    path: 'healthchecklist',
+    component: HealthcheckListComponent
   },
 
 

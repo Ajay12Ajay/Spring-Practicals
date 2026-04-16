@@ -1,0 +1,94 @@
+<style>
+  .hm {
+    background-image: url('assets/img/welcome.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-top: 200px;
+    padding-bottom: 175px;
+  }
+</style>
+<app-navbar></app-navbar>
+
+<div class="hm">
+  <div class="row pt-3">
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4">
+      <div class="card input-group-addon">
+        <div class="card-body">
+
+          <!-- Title -->
+          <h3 class="text-center text-primary" *ngIf="!form.data.id">
+            Add Health Check
+          </h3>
+
+          <h3 class="text-center text-primary" *ngIf="form.data.id > 0">
+            Update Health Check
+          </h3>
+
+          <!-- Success -->
+          <div *ngIf="!form.error && form.message"
+               class="alert alert-success text-center">
+            {{ form.message }}
+          </div>
+
+          <!-- Error -->
+          <div *ngIf="form.error && form.message"
+               class="alert alert-danger text-center">
+            {{ form.message }}
+          </div>
+
+          <!-- Health Code -->
+          <span><b>Health Code</b> *</span>
+          <input type="text" class="form-control mb-2"
+                 [(ngModel)]="form.data.healthCode"
+                 name="healthCode"
+                 placeholder="Enter Health Code">
+          <small class="text-danger">{{ form.inputerror.healthCode }}</small>
+
+          <!-- Service Name -->
+          <span><b>Service Name</b> *</span>
+          <input type="text" class="form-control mb-2"
+                 [(ngModel)]="form.data.serviceName"
+                 name="serviceName"
+                 placeholder="Enter Service Name">
+          <small class="text-danger">{{ form.inputerror.serviceName }}</small>
+
+          <!-- Uptime -->
+          <span><b>Uptime</b> *</span>
+          <input type="text" class="form-control mb-2"
+                 [(ngModel)]="form.data.uptime"
+                 name="uptime"
+                 placeholder="Enter Uptime">
+          <small class="text-danger">{{ form.inputerror.uptime }}</small>          
+
+          <!-- Status -->
+          <span><b>Status</b> *</span>
+          <select class="form-control mb-2"
+                  [(ngModel)]="form.data.status"
+                  name="status">
+            <option value="undefined">--Select--</option>
+            <option value="ACTIVE">ACTIVE</option>
+            <option value="INACTIVE">INACTIVE</option>
+            
+          </select>
+          <small class="text-danger">{{ form.inputerror.status }}</small>
+
+          <!-- Buttons -->
+          <div class="text-center mt-3">
+            <button class="btn btn-success" (click)="submit()">Save</button>
+            &nbsp;
+            <button class="btn btn-warning"
+                    (click)="forward('healthchecklist')">List</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+<app-footer></app-footer>
