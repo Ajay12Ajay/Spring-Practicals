@@ -65,6 +65,8 @@ import { OrganizationComponent } from './organization/organization.component';
 import { OrganizationListComponent } from './organization/organization-list.component';
 import { HealthcheckComponent } from './healthcheck/healthcheck.component';
 import { HealthcheckListComponent } from './healthcheck/healthcheck-list.component';
+import { QuotaComponent } from './quota/quota.component';
+import { QuotaListComponent } from './quota/quota-list.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -129,7 +131,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     OrganizationComponent,
     OrganizationListComponent,
     HealthcheckComponent,
-    HealthcheckListComponent
+    HealthcheckListComponent,
+    QuotaComponent,
+    QuotaListComponent
   ],
   imports: [
     BrowserModule,

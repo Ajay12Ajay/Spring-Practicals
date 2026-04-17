@@ -2,11 +2,31 @@
   .aj {
     background-image: linear-gradient(to bottom right, #b2f0ed, #818a8f);
   }
-    .img {
+  .img {
     width: 60px;
     height: 60px;
-    /* border-radius: 50%; */
     object-fit: cover;
+  }
+  .mega-dropdown-menu {
+    min-width: 280px;
+    padding: 10px 0;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .mega-dropdown-menu .dropdown-header {
+    font-weight: 700;
+    color: #2F4156;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 6px 16px 2px;
+  }
+  .mega-dropdown-menu .dropdown-item {
+    padding: 4px 16px;
+    font-size: 0.9rem;
+  }
+  .mega-dropdown-menu .dropdown-divider {
+    margin: 6px 0;
   }
 </style>
 
@@ -17,8 +37,8 @@
     <img *ngIf="isLogin()" src="http://localhost:8080/User/profilePic/{{form.data.id}}" alt="profile" class="img" align="center">
   </a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-    aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon">
       <i class="fa fa-bars" style="color: #fff; font-size: 28px;"></i>
     </span>
@@ -27,218 +47,167 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
 
-      <!-- Links shown when logged in -->
       <ng-container *ngIf="isLogin()">
 
+        <!-- ═══ GROUP 1: Management ═══ -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">{{ 'Links.user' |
-            translate }}</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/user']"><i class="fa fa-user-circle"></i> {{ 'Links.AddUser' |
-              translate }}</a>
-            <a class="dropdown-item" [routerLink]="['/userlist']"><i class="fa fa-user-friends"></i> {{ 'Links.UserList'
-              | translate }}</a>
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">
+            <i class="fa fa-th-large mr-1"></i> Management
+          </a>
+          <div class="dropdown-menu mega-dropdown-menu">
+
+            <!-- User -->
+            <h6 class="dropdown-header"><i class="fa fa-user-circle mr-1"></i> {{ 'Links.user' | translate }}</h6>
+            <a class="dropdown-item" [routerLink]="['/user']"><i class="fa fa-user-circle fa-fw"></i> {{ 'Links.AddUser' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/userlist']"><i class="fa fa-user-friends fa-fw"></i> {{ 'Links.UserList' | translate }}</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Role -->
+            <h6 class="dropdown-header"><i class="fa fa-user-tie mr-1"></i> {{ 'Links.role' | translate }}</h6>
+            <a class="dropdown-item" [routerLink]="['/role']"><i class="fa fa-user-tie fa-fw"></i> {{ 'Links.AddRole' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/rolelist']"><i class="fa fa-user-friends fa-fw"></i> {{ 'Links.RoleList' | translate }}</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- College -->
+            <h6 class="dropdown-header"><i class="fa fa-university mr-1"></i> {{ 'Links.college' | translate }}</h6>
+            <a class="dropdown-item" [routerLink]="['/college']"><i class="fa fa-university fa-fw"></i> {{ 'Links.AddCollege' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/collegelist']"><i class="fa fa-building fa-fw"></i> {{ 'Links.CollegeList' | translate }}</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Student -->
+            <h6 class="dropdown-header"><i class="fa fa-users mr-1"></i> {{ 'Links.student' | translate }}</h6>
+            <a class="dropdown-item" [routerLink]="['/student']"><i class="fa fa-user-circle fa-fw"></i> {{ 'Links.AddStudent' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/studentlist']"><i class="fa fa-users fa-fw"></i> {{ 'Links.StudentList' | translate }}</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Marksheet -->
+            <h6 class="dropdown-header"><i class="fa fa-file mr-1"></i> {{ 'Links.marksheet' | translate }}</h6>
+            <a class="dropdown-item" [routerLink]="['/marksheet']"><i class="fa fa-file fa-fw"></i> {{ 'Links.AddMarksheet' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/marksheetlist']"><i class="fa fa-paste fa-fw"></i> {{ 'Links.MarksheetList' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/getmarksheet']"><i class="fa fa-paste fa-fw"></i> {{ 'Links.GetMarksheet' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/marksheetmerit-list']"><i class="fa fa-paste fa-fw"></i> {{ 'Links.MarksheetMeritList' | translate }}</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Course -->
+            <h6 class="dropdown-header"><i class="fa fa-book-open mr-1"></i> {{ 'Links.course' | translate }}</h6>
+            <a class="dropdown-item" [routerLink]="['/course']"><i class="fa fa-book-open fa-fw"></i> {{ 'Links.AddCourse' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/courselist']"><i class="fa fa-sort-amount-down fa-fw"></i> {{ 'Links.CourseList' | translate }}</a>
+
           </div>
         </li>
 
+        <!-- ═══ GROUP 2: Operations ═══ -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">{{ 'Links.role' |
-            translate }}</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/role']"><i class="fa fa-user-tie"></i> {{ 'Links.AddRole' |
-              translate }}</a>
-            <a class="dropdown-item" [routerLink]="['/rolelist']"><i class="fa fa-user-friends"></i> {{ 'Links.RoleList'
-              | translate }}</a>
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">
+            <i class="fa fa-cogs mr-1"></i> Operations
+          </a>
+          <div class="dropdown-menu mega-dropdown-menu">
+
+            <!-- Subject -->
+            <h6 class="dropdown-header"><i class="fa fa-calculator mr-1"></i> {{ 'Links.subject' | translate }}</h6>
+            <a class="dropdown-item" [routerLink]="['/subject']"><i class="fa fa-calculator fa-fw"></i> {{ 'Links.AddSubject' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/subjectlist']"><i class="fa fa-sort-amount-down fa-fw"></i> {{ 'Links.SubjectList' | translate }}</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Timetable -->
+            <h6 class="dropdown-header"><i class="fa fa-clock mr-1"></i> {{ 'Links.timetable' | translate }}</h6>
+            <a class="dropdown-item" [routerLink]="['/timetable']"><i class="fa fa-clock fa-fw"></i> {{ 'Links.AddTimetable' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/timetablelist']"><i class="fa fa-clock fa-fw"></i> {{ 'Links.TimetableList' | translate }}</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Faculty -->
+            <h6 class="dropdown-header"><i class="fa fa-chalkboard-teacher mr-1"></i> {{ 'Links.faculty' | translate }}</h6>
+            <a class="dropdown-item" [routerLink]="['/faculty']"><i class="fa fa-user-tie fa-fw"></i> {{ 'Links.AddFaculty' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/facultylist']"><i class="fa fa-users fa-fw"></i> {{ 'Links.FacultyList' | translate }}</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Order -->
+            <h6 class="dropdown-header"><i class="fa fa-shopping-cart mr-1"></i> Order</h6>
+            <a class="dropdown-item" [routerLink]="['/order']"><i class="fa fa-user-tie fa-fw"></i> Add Order</a>
+            <a class="dropdown-item" [routerLink]="['/orderlist']"><i class="fa fa-users fa-fw"></i> Order List</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Press Release -->
+            <h6 class="dropdown-header"><i class="fa fa-newspaper mr-1"></i> Press Release</h6>
+            <a class="dropdown-item" [routerLink]="['/pressrelease']"><i class="fa fa-user-tie fa-fw"></i> Add Press Release</a>
+            <a class="dropdown-item" [routerLink]="['/pressrleaselist']"><i class="fa fa-users fa-fw"></i> Press Release List</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- EMI -->
+            <h6 class="dropdown-header"><i class="fa fa-credit-card mr-1"></i> EMI</h6>
+            <a class="dropdown-item" [routerLink]="['/emi']"><i class="fa fa-user-tie fa-fw"></i> Add EMI</a>
+            <a class="dropdown-item" [routerLink]="['/emilist']"><i class="fa fa-users fa-fw"></i> EMI List</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Vaccine -->
+            <h6 class="dropdown-header"><i class="fa fa-syringe mr-1"></i> Vaccine</h6>
+            <a class="dropdown-item" [routerLink]="['/vaccine']"><i class="fa fa-user-tie fa-fw"></i> Add Vaccine</a>
+            <a class="dropdown-item" [routerLink]="['/vaccinelist']"><i class="fa fa-users fa-fw"></i> Vaccine List</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Promissory Note -->
+            <h6 class="dropdown-header"><i class="fa fa-file-contract mr-1"></i> Promissory Note</h6>
+            <a class="dropdown-item" [routerLink]="['/promissory']"><i class="fa fa-user-tie fa-fw"></i> Add Promissory Note</a>
+            <a class="dropdown-item" [routerLink]="['/promissorylist']"><i class="fa fa-users fa-fw"></i> Promissory Note List</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Timezone -->
+            <h6 class="dropdown-header"><i class="fa fa-globe mr-1"></i> Timezone</h6>
+            <a class="dropdown-item" [routerLink]="['/timezone']"><i class="fa fa-user-tie fa-fw"></i> Add Timezone</a>
+            <a class="dropdown-item" [routerLink]="['/timezonelist']"><i class="fa fa-users fa-fw"></i> Timezone List</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Drone Delivery -->
+            <h6 class="dropdown-header"><i class="fa fa-helicopter mr-1"></i> Drone Delivery</h6>
+            <a class="dropdown-item" [routerLink]="['/dronedelivery']"><i class="fa fa-user-tie fa-fw"></i> Add Drone Delivery</a>
+            <a class="dropdown-item" [routerLink]="['/dronedeliverylist']"><i class="fa fa-users fa-fw"></i> Drone Delivery List</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Notification Template -->
+            <h6 class="dropdown-header"><i class="fa fa-bell mr-1"></i> Notification Template</h6>
+            <a class="dropdown-item" [routerLink]="['/notification']"><i class="fa fa-user-tie fa-fw"></i> Add Notification Template</a>
+            <a class="dropdown-item" [routerLink]="['/notificationlist']"><i class="fa fa-users fa-fw"></i> Notification Template List</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Loyalty -->
+            <h6 class="dropdown-header"><i class="fa fa-heart mr-1"></i> Loyalty</h6>
+            <a class="dropdown-item" [routerLink]="['/loyalty']"><i class="fa fa-user-tie fa-fw"></i> Add Loyalty</a>
+            <a class="dropdown-item" [routerLink]="['/loyaltylist']"><i class="fa fa-users fa-fw"></i> Loyalty List</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Export -->
+            <h6 class="dropdown-header"><i class="fa fa-file-export mr-1"></i> Export</h6>
+            <a class="dropdown-item" [routerLink]="['/export']"><i class="fa fa-user-tie fa-fw"></i> Add Export</a>
+            <a class="dropdown-item" [routerLink]="['/exportlist']"><i class="fa fa-users fa-fw"></i> Export List</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Payment Method -->
+            <h6 class="dropdown-header"><i class="fa fa-wallet mr-1"></i> Payment Method</h6>
+            <a class="dropdown-item" [routerLink]="['/payment']"><i class="fa fa-user-tie fa-fw"></i> Add Payment</a>
+            <a class="dropdown-item" [routerLink]="['/paymentlist']"><i class="fa fa-users fa-fw"></i> Payment List</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Organization -->
+            <h6 class="dropdown-header"><i class="fa fa-sitemap mr-1"></i> Organization</h6>
+            <a class="dropdown-item" [routerLink]="['/organization']"><i class="fa fa-user-tie fa-fw"></i> Add Organization</a>
+            <a class="dropdown-item" [routerLink]="['/organizationlist']"><i class="fa fa-users fa-fw"></i> Organization List</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Health Check -->
+            <h6 class="dropdown-header"><i class="fa fa-heartbeat mr-1"></i> Health Check</h6>
+            <a class="dropdown-item" [routerLink]="['/healthcheck']"><i class="fa fa-user-tie fa-fw"></i> Add Health Check</a>
+            <a class="dropdown-item" [routerLink]="['/healthchecklist']"><i class="fa fa-users fa-fw"></i> Health Check List</a>
+            <div class="dropdown-divider"></div>
+
+            <!-- Quota -->
+            <h6 class="dropdown-header"><i class="fa fa-tachometer-alt mr-1"></i> Quota</h6>
+            <a class="dropdown-item" [routerLink]="['/quota']"><i class="fa fa-user-tie fa-fw"></i> Add Quota</a>
+            <a class="dropdown-item" [routerLink]="['/quotalist']"><i class="fa fa-users fa-fw"></i> Quota List</a>
+
           </div>
         </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">{{ 'Links.college'
-            | translate }}</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/college']"><i class="fa fa-university"></i> {{ 'Links.AddCollege'
-              | translate }}</a>
-            <a class="dropdown-item" [routerLink]="['/collegelist']"><i class="fa fa-building"></i> {{
-              'Links.CollegeList' | translate }}</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">{{ 'Links.student'
-            | translate }}</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/student']"><i class="fa fa-user-circle"></i> {{ 'Links.AddStudent'
-              | translate }}</a>
-            <a class="dropdown-item" [routerLink]="['/studentlist']"><i class="fa fa-users"></i> {{ 'Links.StudentList'
-              | translate }}</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">{{
-            'Links.marksheet' | translate }}</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/marksheet']"><i class="fa fa-file"></i> {{ 'Links.AddMarksheet' |
-              translate }}</a>
-            <a class="dropdown-item" [routerLink]="['/marksheetlist']"><i class="fa fa-paste"></i> {{
-              'Links.MarksheetList' | translate }}</a>
-
-              <a class="dropdown-item" [routerLink]="['/getmarksheet']"><i class="fa fa-paste"></i> {{
-              'Links.GetMarksheet' | translate }}</a>
-              <a class="dropdown-item" [routerLink]="['/marksheetmerit-list']"><i class="fa fa-paste"></i> {{
-              'Links.MarksheetMeritList' | translate }}</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">{{ 'Links.course'
-            | translate }}</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/course']"><i class="fa fa-book-open"></i> {{ 'Links.AddCourse' |
-              translate }}</a>
-            <a class="dropdown-item" [routerLink]="['/courselist']"><i class="fa fa-sort-amount-down"></i> {{
-              'Links.CourseList' | translate }}</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">{{ 'Links.subject'
-            | translate }}</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/subject']"><i class="fa fa-calculator"></i> {{ 'Links.AddSubject'
-              | translate }}</a>
-            <a class="dropdown-item" [routerLink]="['/subjectlist']"><i class="fa fa-sort-amount-down"></i> {{
-              'Links.SubjectList' | translate }}</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">{{
-            'Links.timetable' | translate }}</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/timetable']"><i class="fa fa-clock"></i> {{ 'Links.AddTimetable' |
-              translate }}</a>
-            <a class="dropdown-item" [routerLink]="['/timetablelist']"><i class="fa fa-clock"></i> {{
-              'Links.TimetableList' | translate }}</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">{{ 'Links.faculty'
-            | translate }}</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/faculty']"><i class="fa fa-user-tie"></i> {{ 'Links.AddFaculty' |
-              translate }}</a>
-            <a class="dropdown-item" [routerLink]="['/facultylist']"><i class="fa fa-users"></i> {{ 'Links.FacultyList'
-              | translate }}</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">Order</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/order']"><i class="fa fa-user-tie"></i> AddOrder</a>
-            <a class="dropdown-item" [routerLink]="['/orderlist']"><i class="fa fa-users"></i> OrderList</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">Press Release</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/pressrelease']"><i class="fa fa-user-tie"></i> Add Press Release</a>
-            <a class="dropdown-item" [routerLink]="['/pressrleaselist']"><i class="fa fa-users"></i> Press Release List</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">EMI</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/emi']"><i class="fa fa-user-tie"></i> Add EMI</a>
-            <a class="dropdown-item" [routerLink]="['/emilist']"><i class="fa fa-users"></i> EMI List</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">VACCINE</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/vaccine']"><i class="fa fa-user-tie"></i> Add VACCINE</a>
-            <a class="dropdown-item" [routerLink]="['/vaccinelist']"><i class="fa fa-users"></i> VACCINE List</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">PROMISSORY NOTE</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/promissory']"><i class="fa fa-user-tie"></i> Add PROMISSORY NOTE</a>
-            <a class="dropdown-item" [routerLink]="['/promissorylist']"><i class="fa fa-users"></i> PROMISSORY NOTE List</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">Timezone </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/timezone']"><i class="fa fa-user-tie"></i> Add Timezone</a>
-            <a class="dropdown-item" [routerLink]="['/timezonelist']"><i class="fa fa-users"></i> Timezone List</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">Drone Delivery </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/dronedelivery']"><i class="fa fa-user-tie"></i> Add Drone Delivery</a>
-            <a class="dropdown-item" [routerLink]="['/dronedeliverylist']"><i class="fa fa-users"></i> Drone Dlivery List</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">Notification Template </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/notification']"><i class="fa fa-user-tie"></i> Add Notification Template</a>
-            <a class="dropdown-item" [routerLink]="['/notificationlist']"><i class="fa fa-users"></i> Notification Template List</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">Loyalty  </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/loyalty']"><i class="fa fa-user-tie"></i> Add Loyalty</a>
-            <a class="dropdown-item" [routerLink]="['/loyaltylist']"><i class="fa fa-users"></i> Loyalty List</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">Export  </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/export']"><i class="fa fa-user-tie"></i> Add Export</a>
-            <a class="dropdown-item" [routerLink]="['/exportlist']"><i class="fa fa-users"></i> Export List</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">Payment Method  </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/payment']"><i class="fa fa-user-tie"></i> Add Payment</a>
-            <a class="dropdown-item" [routerLink]="['/paymentlist']"><i class="fa fa-users"></i> Payment List</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">Organization  </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/organization']"><i class="fa fa-user-tie"></i> Add Organization</a>
-            <a class="dropdown-item" [routerLink]="['/organizationlist']"><i class="fa fa-users"></i> Organization List</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #2F4156;">Health Check  </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['/healthcheck']"><i class="fa fa-user-tie"></i> Add Health Check</a>
-            <a class="dropdown-item" [routerLink]="['/healthchecklist']"><i class="fa fa-users"></i> Health Check List</a>
-          </div>
-        </li>
-
-        <!-- Logged in user welcome dropdown -->
+        <!-- Logged-in user welcome dropdown -->
         <li class="nav-item dropdown ml-3">
           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
             <span style="color: #2F4156;">
@@ -246,18 +215,15 @@
             </span>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" (click)="forward()"><i class="fa fa-user-tie"></i> {{ 'Links.MyProfile' | translate
-              }}</a>
-            <a class="dropdown-item" [routerLink]="['/changepassword']"><i class="fa fa-edit"></i> {{
-              'Links.ChangePassword' | translate }}</a>
-            <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out-alt"></i> {{ 'Links.Logout' | translate
-              }}</a>
+            <a class="dropdown-item" (click)="forward()"><i class="fa fa-user-tie"></i> {{ 'Links.MyProfile' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/changepassword']"><i class="fa fa-edit"></i> {{ 'Links.ChangePassword' | translate }}</a>
+            <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out-alt"></i> {{ 'Links.Logout' | translate }}</a>
           </div>
         </li>
 
       </ng-container>
 
-      <!-- Guest welcome dropdown shown when NOT logged in -->
+      <!-- Guest dropdown -->
       <ng-container *ngIf="!isLogin()">
         <li class="nav-item dropdown ml-3">
           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
@@ -266,10 +232,8 @@
             </span>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" [routerLink]="['/login']"><i class="fa fa-sign-in-alt"></i> {{ 'Links.Login' |
-              translate }}</a>
-            <a class="dropdown-item" [routerLink]="['/signup']"><i class="fa fa-registered"></i> {{ 'Links.signup' |
-              translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/login']"><i class="fa fa-sign-in-alt"></i> {{ 'Links.Login' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/signup']"><i class="fa fa-registered"></i> {{ 'Links.signup' | translate }}</a>
           </div>
         </li>
       </ng-container>

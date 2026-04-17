@@ -52,6 +52,8 @@ import { OrganizationComponent } from './organization/organization.component';
 import { OrganizationListComponent } from './organization/organization-list.component';
 import { HealthcheckComponent } from './healthcheck/healthcheck.component';
 import { HealthcheckListComponent } from './healthcheck/healthcheck-list.component';
+import { QuotaComponent } from './quota/quota.component';
+import { QuotaListComponent } from './quota/quota-list.component';
 
 
 
@@ -361,6 +363,18 @@ const routes: Routes = [
   {
     path: 'healthchecklist',
     component: HealthcheckListComponent
+  },
+  {
+    path: 'quota',
+    component: QuotaComponent
+  },
+  {
+    path: 'quota/:id',
+    component: QuotaComponent
+  },
+  {
+    path: 'quotalist',
+    component: QuotaListComponent
   },
 
 

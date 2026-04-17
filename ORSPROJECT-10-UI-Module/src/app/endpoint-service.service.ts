@@ -30,5 +30,6 @@ export class EndpointServiceService {
   public PAYMENT = this.SERVER_URL + "/PaymentMethod";
   public ORGANIZATION = this.SERVER_URL + "/Organization";
   public HEALTHCHECK = this.SERVER_URL + "/HealthCheck";
+  public QUOTA = this.SERVER_URL + "/Quota";
 
 }
