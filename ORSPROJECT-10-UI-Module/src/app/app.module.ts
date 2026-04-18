@@ -67,6 +67,8 @@ import { HealthcheckComponent } from './healthcheck/healthcheck.component';
 import { HealthcheckListComponent } from './healthcheck/healthcheck-list.component';
 import { QuotaComponent } from './quota/quota.component';
 import { QuotaListComponent } from './quota/quota-list.component';
+import { ApiComponent } from './api/api.component';
+import { ApiListComponent } from './api/api-list.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -133,7 +135,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     HealthcheckComponent,
     HealthcheckListComponent,
     QuotaComponent,
-    QuotaListComponent
+    QuotaListComponent,
+    ApiComponent,
+    ApiListComponent
   ],
   imports: [
     BrowserModule,

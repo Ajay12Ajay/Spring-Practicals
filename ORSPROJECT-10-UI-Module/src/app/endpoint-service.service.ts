@@ -31,5 +31,6 @@ export class EndpointServiceService {
   public ORGANIZATION = this.SERVER_URL + "/Organization";
   public HEALTHCHECK = this.SERVER_URL + "/HealthCheck";
   public QUOTA = this.SERVER_URL + "/Quota";
+  public API = this.SERVER_URL + "/APIKey";
 
 }

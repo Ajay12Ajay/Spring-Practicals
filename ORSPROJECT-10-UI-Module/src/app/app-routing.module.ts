@@ -54,6 +54,8 @@ import { HealthcheckComponent } from './healthcheck/healthcheck.component';
 import { HealthcheckListComponent } from './healthcheck/healthcheck-list.component';
 import { QuotaComponent } from './quota/quota.component';
 import { QuotaListComponent } from './quota/quota-list.component';
+import { ApiComponent } from './api/api.component';
+import { ApiListComponent } from './api/api-list.component';
 
 
 
@@ -375,6 +377,18 @@ const routes: Routes = [
   {
     path: 'quotalist',
     component: QuotaListComponent
+  },
+  {
+    path: 'api',
+    component: ApiComponent
+  },
+  {
+    path: 'api/:id',
+    component: ApiComponent
+  },
+  {
+    path: 'apilist',
+    component: ApiListComponent
   },
 
 
