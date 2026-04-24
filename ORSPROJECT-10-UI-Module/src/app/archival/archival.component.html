@@ -1,0 +1,94 @@
+<style>
+  .hm {
+    background-image: url('assets/img/welcome.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-top: 200px;
+    padding-bottom: 175px;
+  }
+</style>
+<app-navbar></app-navbar>
+
+<div class="hm">
+  <div class="row pt-3">
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4">
+      <div class="card input-group-addon">
+        <div class="card-body">
+
+          <!-- Title -->
+          <h3 class="text-center text-primary" *ngIf="!form.data.id">
+            Add Archival Policy
+          </h3>
+
+          <h3 class="text-center text-primary" *ngIf="form.data.id > 0">
+            Update Archival Policy
+          </h3>
+
+          <!-- Success -->
+          <div *ngIf="!form.error && form.message"
+               class="alert alert-success text-center">
+            {{ form.message }}
+          </div>
+
+          <!-- Error -->
+          <div *ngIf="form.error && form.message"
+               class="alert alert-danger text-center">
+            {{ form.message }}
+          </div>
+
+          <!-- Policy Code -->
+          <span><b>Policy Code</b> *</span>
+          <input type="text" class="form-control mb-2"
+                 [(ngModel)]="form.data.policyCode"
+                 name="policyCode"
+                 placeholder="Enter Policy Code">
+          <small class="text-danger">{{ form.inputerror.policyCode }}</small>
+
+          <!-- Data type -->
+          <span><b>Data type</b> *</span>
+          <input type="text" class="form-control mb-2"
+                 [(ngModel)]="form.data.dataType"
+                 name="dataType"
+                 placeholder="Enter Data type">
+          <small class="text-danger">{{ form.inputerror.dataType }}</small>
+
+          <!-- Archive After Days -->
+          <span><b>Archive After Days</b> *</span>
+          <input type="number" class="form-control mb-2"
+                 [(ngModel)]="form.data.archiveAfterDays"
+                 name="archiveAfterDays"
+                 placeholder="Enter Archive After Days">
+          <small class="text-danger">{{ form.inputerror.archiveAfterDays }}</small>          
+
+          <!-- Status -->
+          <span><b>Status</b> *</span>
+          <select class="form-control mb-2"
+                  [(ngModel)]="form.data.status"
+                  name="status">
+            <option value="undefined">--Select--</option>
+            <option value="ACTIVE">ACTIVE</option>
+            <option value="INACTIVE">INACTIVE</option>
+            
+          </select>
+          <small class="text-danger">{{ form.inputerror.status }}</small>
+
+          <!-- Buttons -->
+          <div class="text-center mt-3">
+            <button class="btn btn-success" (click)="submit()">Save</button>
+            &nbsp;
+            <button class="btn btn-warning"
+                    (click)="forward('archivallist')">List</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+<app-footer></app-footer>

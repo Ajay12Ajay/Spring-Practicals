@@ -69,6 +69,8 @@ import { QuotaComponent } from './quota/quota.component';
 import { QuotaListComponent } from './quota/quota-list.component';
 import { ApiComponent } from './api/api.component';
 import { ApiListComponent } from './api/api-list.component';
+import { ArchivalComponent } from './archival/archival.component';
+import { ArchivalListComponent } from './archival/archival-list.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -137,7 +139,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     QuotaComponent,
     QuotaListComponent,
     ApiComponent,
-    ApiListComponent
+    ApiListComponent,
+    ArchivalComponent,
+    ArchivalListComponent
   ],
   imports: [
     BrowserModule,

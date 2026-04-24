@@ -56,6 +56,8 @@ import { QuotaComponent } from './quota/quota.component';
 import { QuotaListComponent } from './quota/quota-list.component';
 import { ApiComponent } from './api/api.component';
 import { ApiListComponent } from './api/api-list.component';
+import { ArchivalComponent } from './archival/archival.component';
+import { ArchivalListComponent } from './archival/archival-list.component';
 
 
 
@@ -389,6 +391,18 @@ const routes: Routes = [
   {
     path: 'apilist',
     component: ApiListComponent
+  },
+   {
+    path: 'archival',
+    component: ArchivalComponent
+  },
+  {
+    path: 'archival/:id',
+    component: ArchivalComponent
+  },
+  {
+    path: 'archivallist',
+    component: ArchivalListComponent
   },
 
 
